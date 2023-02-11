@@ -36,7 +36,7 @@ export class PaddleOcrEngine implements IOcrEngine {
 				console.log("paddleDir exists, start ocr server");
 
 				/** caution: use npm run dev:once, or it will throw error "error while attempting to bind on address" */
-				const ocr = childProcess.spawn(`./paddle-server/PaddleocrAPI.exe`, [`--lang=ch`, `--model-dir=.\\model`]);
+				const ocr = childProcess.spawn(`./paddle-server/PaddleocrAPI.exe`, [`--lang=ch`, `--model-dir=.\\model`], { windowsHide: true, detached: false /** hide console */ });
 				this.ocr = ocr;
 				ocr.stdout.on("data", (data) => {
 					console.log(`stdout: ${data}`);
@@ -75,7 +75,7 @@ export class PaddleOcrEngine implements IOcrEngine {
 			}
 		} catch (error) {
 			console.log(error);
-			return { text: "" };
+			return { text: "ocr server is not running" };
 		}
 
 		const base64 = buffer.toString("base64");
