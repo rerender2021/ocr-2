@@ -4,3 +4,5 @@ bin
 # .pkg-cache
 dist
 /*.traineddata
+
+paddle-server
