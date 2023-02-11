@@ -10,7 +10,7 @@
     "prebuild": "del-cli ./build && del-cli ./dist",
     "build": "tsc",
     "postbuild": "npm run copy && npm run bundle",
-    "copy": "copyfiles ./lang-data/* ./dist && copyfiles -f ./node_modules/ave-ui/lib/* ./dist/lib && copyfiles -f ./node_modules/tesseract.js-core/tesseract-core.wasm ./dist/worker-script/node && copyfiles ./assets/* ./dist",
+    "copy": "copyfiles -f ./node_modules/ave-ui/lib/* ./dist/lib && copyfiles ./assets/* ./dist",
     "bundle": "rollup --config rollup.config.js",
     "prerelease": "npm run build",
     "release": "ave-pack pack"
@@ -34,7 +34,6 @@
   "dependencies": {
     "ave-react": "^0.1.3",
     "axios": "^1.3.2",
-    "debounce": "^1.2.1",
-    "tesseract.js": "^3.0.3"
+    "debounce": "^1.2.1"
   }
 }

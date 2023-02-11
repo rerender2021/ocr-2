@@ -36,11 +36,13 @@ export class PaddleOcrEngine implements IOcrEngine {
 				image: base64,
 			});
 			const result = response.data.image as Array<IPaddleOcrItem>;
-			result.forEach((item) => {
+			result.forEach((item, index) => {
 				// console.log(item);
 				const [box, content] = item;
 				text += content[0];
-				text += "\n";
+				if (index !== result.length - 1) {
+					text += "\n";
+				}
 			});
 		} catch (error) {
 			console.log(error);

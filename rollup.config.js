@@ -9,11 +9,4 @@ export default [{
         format: 'cjs'
     },
     plugins: [json(), nodeResolve(), commonjs({ ignoreDynamicRequires: true })],
-}, {
-    input: 'node_modules/tesseract.js/src/worker-script/node/index.js',
-    output: {
-        file: 'dist/worker-script/node/index.js',
-        format: 'cjs'
-    },
-    plugins: [json(), nodeResolve(), commonjs({ ignoreDynamicRequires: true })],
 }]
