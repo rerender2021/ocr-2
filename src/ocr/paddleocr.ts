@@ -61,7 +61,8 @@ export class PaddleOcrEngine implements IOcrEngine {
 	async destroy() {
 		if (this.ocr) {
 			console.log("exit ocr server process");
-			this.ocr.kill(0);
+			process.kill(this.ocr?.pid);
+			process.exit();
 		}
 	}
 
