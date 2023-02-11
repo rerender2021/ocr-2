@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "ave-react": "^0.1.3",
+    "axios": "^1.3.2",
     "debounce": "^1.2.1",
     "tesseract.js": "^3.0.3"
   }
