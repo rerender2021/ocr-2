@@ -23,8 +23,8 @@ function initTheme() {
 }
 
 export function OCR() {
-	const defaultSrc = assetsPath("chi_sim.png");
-	// const defaultSrc = "";
+	// const defaultSrc = assetsPath("chi_sim.png");
+	const defaultSrc = "";
 	const [src, setSrc] = useState<string | AveImage>(defaultSrc);
 	useDragDrop((path) => setSrc(path));
 
