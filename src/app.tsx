@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AveRenderer, Grid, Window, CodeEditor, IButtonComponentProps, getAppContext, IIconResource, Progress, Label, ICodeEditorComponentProps, IWindowComponentProps } from "ave-react";
 import { AveImage, Picture as NativePicture, App, ThemePredefined_Dark, StretchMode, AveGetClipboard, CodeEditor as NativeEditor } from "ave-ui";
-import { TesseractEngine } from "./ocr";
+import { PaddleOcrEngine } from "./ocr";
 import { IImageView, ImageView, RecognizeButton } from "./components";
-import { getClipboardContent, getImageBuffer } from "./common";
+import { assetsPath, getClipboardContent, getImageBuffer } from "./common";
 import { containerLayout, controlLayout } from "./layout";
 import { useDragDrop, useHotKey } from "./hooks";
 import { iconResource } from "./resource";
@@ -47,11 +47,7 @@ export function OCR() {
 
 	const ocrEngine = useMemo(
 		() =>
-			new TesseractEngine({
-				onRecognize: (progress) => {
-					console.log(`onRecognize, progress: ${progress}`);
-					setProgress(progress);
-				},
+			new PaddleOcrEngine({
 				onError: (message) => {
 					setError(true);
 				},
@@ -133,12 +129,12 @@ export function OCR() {
 					<CodeEditor text={ocrText} readonly style={editorStyle} onInit={onInitEditor}></CodeEditor>
 				</Grid>
 				<Grid style={{ area: containerLayout.areas.control, layout: controlLayout }}>
-					<Grid style={{ area: controlLayout.areas.progress }}>
+					{/* <Grid style={{ area: controlLayout.areas.progress }}>
 						<Progress value={Math.floor(progress * 100)} animation></Progress>
 					</Grid>
 					<Grid style={{ area: controlLayout.areas.progressLabel }}>
 						<Label text={progress === 0 ? "progress" : `progress: ${(progress * 100).toFixed(1)}%`}></Label>
-					</Grid>
+					</Grid> */}
 					<Grid style={{ area: controlLayout.areas.recognize }}>
 						<RecognizeButton isLoading={isLoading} recognizing={recognizing} error={error} onRecognize={onRecognize}></RecognizeButton>
 					</Grid>
